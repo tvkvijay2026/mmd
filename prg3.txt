@@ -1,0 +1,7 @@
+import pandas as pd
+df = pd.read_excel(r"")
+mapped = [(age, 1) for age in df['age'] if not pd.isna(age)]
+total_age = sum(age for age, _ in mapped)
+count = sum(c for _, c in mapped)
+avg_age = total_age / count
+print("Average age of Titanic passengers:", round(avg_age, 2))
