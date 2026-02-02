@@ -1,0 +1,14 @@
+program 1:
+import math
+docs = ["good girl", "good boy", "boy girl good"]
+word = input("Enter the word: ").lower()
+N = len(docs)
+tf = [doc.lower().split().count(word) / len(doc.split())
+for doc in docs]
+df = sum(1 for doc in docs if word in doc.lower().split())
+idf = math.log10(N / df) if df > 0 else 0
+tfidf = [t * idf for t in tf]
+print("TF:", tf)
+print("DF:", df)
+print("IDF:", idf)
+print("TF-IDF:", tfidf)
