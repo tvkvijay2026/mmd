@@ -30,9 +30,9 @@ for name, words in docs.items():
  pairs = set()
 for group in buckets.values():
  if len(group) > 1:
- pairs.update(combinations(group, 2))
+  pairs.update(combinations(group, 2))
 print("Similar document pairs:")
 for a, b in pairs:
  sim = jaccard(docs[a], docs[b])
  if sim >= 0.5:
- print(f"{a} and {b} -> Similarity = {sim:.2f}")
+  print(f"{a} and {b} -> Similarity = {sim:.2f}")
