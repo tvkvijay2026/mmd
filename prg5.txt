@@ -1,0 +1,38 @@
+program 5:
+import random, hashlib
+from itertools import combinations
+random.seed(42)
+docs = {
+ "D1": {"data", "mining", "machine", "learning"},
+ "D2": {"data", "mining", "deep", "learning"},
+ "D3": {"artificial", "intelligence", "neural", "network"},
+ "D4": {"data", "science", "machine", "learning"}
+}
+B, r, M = 10, 5, 1000
+hashes = [(random.randint(1, M), random.randint(0, M)) for _ in range(B * r)]
+def word_hash(word):
+ return int(hashlib.md5(word.encode()).hexdigest(), 16)
+def minhash(doc):
+ signature = []
+ for a, b in hashes:
+ min_val = min((a * word_hash(w) + b) % M for w in doc)
+ signature.append(min_val)
+ return signature
+def jaccard(a, b):
+ return len(a & b) / len(a | b)
+buckets = {}
+for name, words in docs.items():
+ sig = minhash(words)
+ for i in range(B):
+ band = sig[i * r:(i + 1) * r]
+ key = (i, hashlib.md5(str(band).encode()).hexdigest())
+ buckets.setdefault(key, []).append(name)
+ pairs = set()
+for group in buckets.values():
+ if len(group) > 1:
+ pairs.update(combinations(group, 2))
+print("Similar document pairs:")
+for a, b in pairs:
+ sim = jaccard(docs[a], docs[b])
+ if sim >= 0.5:
+ print(f"{a} and {b} -> Similarity = {sim:.2f}")
