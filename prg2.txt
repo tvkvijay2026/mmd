@@ -1,0 +1,10 @@
+import pandas as pd
+df = pd.read_excel(r"", engine="openpyxl")
+mapped = [(int(r.year), int(r.consumption)) for _, r in df.iterrows()]
+print("Mapped output:", mapped)
+reduced = {}
+for y, c in mapped:
+ reduced[y] = max(reduced.get(y, 0), c)
+print("\n Maximum electricity consumption per year:")
+for y, c in sorted(reduced.items()):
+ print(f"Year:{y}, Max Consumption:{c}")
