@@ -1,0 +1,9 @@
+import pandas as pd
+df = pd.read_excel(r"")
+mapped = [(city, 1) for city in df['city']]
+reduced = {}
+for city, c in mapped:
+ reduced[city] = reduced.get(city, 0) + c
+print("Total trips per city:")
+for city, trips in reduced.items():
+ print(city, ":", trips)
