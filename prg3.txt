@@ -6,3 +6,14 @@ total_age = sum(age for age, _ in mapped)
 count = sum(c for _, c in mapped)
 avg_age = total_age / count
 print("Average age of Titanic passengers:", round(avg_age, 2))
+passenger_id	name	gender	age
+1	Angel	Female	23
+2	Peter	Male	22
+3	Max	Female	19
+4	Arya	Female	25
+5	Parker	Male	30
+6	Maria	Female	26
+7	Jack	Male	20
+8	Rose	Female	27
+9	Patrick	Male	29
+10	Josh	Female	31
