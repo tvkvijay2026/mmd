@@ -8,3 +8,13 @@ for city, c in mapped:
 print("Total trips per city:")
 for city, trips in reduced.items():
  print(city, ":", trips)
+id	city	trips
+1	Coimbatore	5
+2	Salem	3
+3	Ooty	2
+4	Conoor	7
+5	Theni	9
+6	Ooty	1
+7	Conoor	4
+8	Avinashi	6
+9	Coimbatore	2
